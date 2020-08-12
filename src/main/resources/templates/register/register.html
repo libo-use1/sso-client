@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="" />
+    <link href="/register/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/register/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900" rel="stylesheet">
+    <script type="text/javascript" src="/scripts/jquery/jquery-1.7.1.js"></script>
+    <script>
+        function upperCase()
+        {
+            var telephone = $("#telephone").val();
+            $.ajax({
+                url:'http://localhost:8080/register/userGetRegister',
+                type:'post',
+                dataType:'json',
+                data:{'telephone':telephone},
+                success:function(data){
+                    if(data.code == 'failed'){
+                        alert(data.message);
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="signupform">
+    <h1>注册页面</h1>
+    <div class="container">
+
+        <div class="agile_info">
+            <div class="w3l_form">
+                <div class="left_grid_info">
+                    <h3>欢迎注册！</h3>
+                    <ul class="social_section_1info">
+                        <li><a href="#" class="w3_facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="w3_twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="w3_instagram"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#" class="w3_google"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" class="w3_pinterest"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#" class="w3_vimeo"><i class="fa fa-vimeo"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="w3_info">
+                <h2>请输入你的信息</h2>
+                <form action="#" method="post">
+                    <div class="input-group">
+                        <span><i class="fa fa-phone" aria-hidden="true"></i></span>
+                        <input type="text" placeholder="请输入电话号(账号)" id="telephone" name="telephone">
+                    </div>
+                    <div class="input-group">
+                        <span><i class="fa fa-lock" aria-hidden="true"></i></span>
+                        <input type="Password" placeholder="请输入密码" id="pwd" name="pwd" required="true">
+                    </div>
+                    <div class="input-group">
+                        <span><i class="fa fa-lock" aria-hidden="true"></i></span>
+                        <input type="Password" placeholder="确认密码" id="rpwd" name="rpwd" required="true">
+                    </div>
+                    <input class="btn btn-danger btn-block" type="button" id="register" value="注册"></input >
+                    <input class="btn btn-danger btn-block" type="button" id="log" value="登录"></input >
+                </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+    <div class="footer">
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#log").click(function () {
+            window.location.href="http://localhost:8888/login/logView"
+        })
+
+        $("#register").click(function(){
+            var telephone = $("#telephone").val();
+            var password = $("#pwd").val();
+            var rPwd = $("#rpwd").val();
+            if(password == ''||rPwd ==''){
+                alert("密码不能为空");
+                return;
+            }
+            if(password !== rPwd){
+                alert("密码不一致");
+                return;
+            }
+            if(telephone == ''||telephone ==null){
+                alert("电话号不能为空");
+                return;
+            }
+            $.ajax({
+                url:'http://localhost:8888/register/doRegister',
+                type:'post',
+                dataType:'json',
+                data:{'username':telephone,'password':password},
+                success:function(data){
+                    alert(data.message)
+                    if(data.code == 'success'){
+                        window.location.href = 'http://localhost:8888/login/logView';
+                    }else{
+                        alert(data.message)
+                    }
+                }
+            });
+        });
+    });
+
+    /*回车事件*/
+    function EnterPress(e){ //传入 event
+        var e = e || window.event;
+        if(e.keyCode == 13){
+
+            var telephone = $("#telephone").val();
+            var password = $("#pwd").val();
+            var rPwd = $("#rpwd").val();
+            if(password == ''||rPwd ==''){
+                alert("密码不能为空");
+                return;
+            }
+            if(password !== rPwd){
+                alert("密码不一致");
+                return;
+            }
+            if(telephone == ''||telephone ==null){
+                alert("电话号不能为空");
+                return;
+            }
+            $.ajax({
+                url:'http://localhost:8888/register/doRegister',
+                type:'post',
+                dataType:'json',
+                data:{'username':telephone,'password':password},
+                success:function(data){
+                    if(data.code == 'success'){
+                        window.location.href = 'http://localhost:8080/login/log';
+                    }else{
+                        alert(data.message)
+                    }
+                }
+            });
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>testRedis</h1>
+hello server,welcome to client
+
+<span name="nurseId"  th:text="${result['redis']}" class="dfspan"></span><br>
+<span name="nurseId"  th:text="${result['userName']}" class="dfspan"></span><br>
+
+<span name="nurseId" th:text="${result['test']==null}?'':${result['test']}" class="dfspan"></span><br>
+<span name="nurseId" th:text="${result['password']}" class="dfspan"></span>
+<span name="nurseId" th:text="${result['url']}" class="dfspan"></span>
+<span name="nurseId" th:text="${result['client']}" class="dfspan"></span>
+
+
+</body>
+</html>

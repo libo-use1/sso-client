@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper">
+    <select id="getUserLogin" parameterType="java.util.Map" resultType="java.util.Map">
+        select uid,
+        login_name as "loginName",
+        nick_name as "username",
+        telephone,
+        password,
+        pw_type as "pwType",
+        outer_id as "outerId"
+        state,
+        creat_time,
+        memo
+        from user
+        <where>
+            <if test='loginName!=null and loginName!=""'>
+                login_name=#{loginName}
+            </if>
+            <if test='telephone!=null and telephone!=""'>
+                telephone=#{telephone}
+            </if>
+        </where>
+        for update
+    </select>
+
+    <insert id="register" parameterType="java.util.Map">
+        insert into user (login_name,nick_name,telephone,password,pw_type,outer_id,state,create_time,update_time)
+        values (#{loginName},#{nickName},#{telephone},#{password},#{pwType},#{outerId},#{state},now(),null)
+    </insert>
+</mapper>

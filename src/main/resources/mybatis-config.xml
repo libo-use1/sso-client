@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 打印sql语句相关信息 -->
+    <settings>
+        <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
+        <setting name="defaultStatementTimeout" value="60"/><!-- 超时时间 -->
+        <setting name="callSettersOnNulls" value="true"/>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+
+    <!--mapper映射 -->
+    <mappers>
+        <!--<mapper resource="mybatisMapper/userMapper.xml"/>
+        <mapper resource="mybatisMapper/loginRegister.xml"/>
+        <mapper resource="mybatisMapper/nurse.xml"/>
+        <mapper resource="mybatisMapper/nurseAdmin.xml"/>-->
+    </mappers>
+</configuration>
